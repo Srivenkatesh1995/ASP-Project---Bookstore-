@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Textbook>
+
+@{
+    ViewData["Title"] = "TextbookView";
+}
+
+<h1>Textbooks at ANV Bookstore</h1>
+
+
+<div>
+ 
+    <form asp-action="SearchView" method="post" name="SearchByMultiCriteria" id="SearchByMultiCriteria" class="form-group">
+    <div class="md-form mt-3">
+        <input type="text" class="form-control" id="SeachBox" placeholder="Search a Value and select the Radio Button as Category" value="@ViewData["Filter"]" name="searchTerm" required />
+    </div>
+    <div>
+        <label class="col-sm-2 col-form-label" for="priceMin">
+            Minimum Price:
+        </label>
+        <input class="form-control" type="number" min="5" max="500" name="priceMin" value="@ViewData["priceMinFilter"]" />
+        <label class="col-sm-2 col-form-label" for="priceMin">
+            Maximum Price:
+        </label>
+        <input type="number" min="5" max="500" name="priceMax" class="form-control" value="@ViewData["priceMaxFilter"]" />
+    </div>
+    <div class="text-center radio-btn-group">
+        <div class="custom-control custom-radio custom-control-inline">
+            <input name="radio" class="custom-control-input" id="bookname" type="radio" value="bookname" checked />
+            <label class="custom-control-label" for="bookname">
+                Book Name
+            </label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input name="radio" class="custom-control-input" id="author" type="radio" value="author" />
+            <label class="custom-control-label" for="author">
+                Author
+            </label>
+        </div>
+    </div>
+    <input name="search" class="btn btn-info" type="submit" value="Search" id="SearchBookButton" />
+</form>
+ </div>
+<h1>Some of the Books in our Repository</h1>
+<table class="table table-dark">
+    <thead>
+       
+        <tr>
+            <th>Textbook_ID</th>
+            <th>Name</th>
+           
+            <th>Price</th>
+      
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach(var t in Model)
+        {
+        <tr>
+            <td>@t.TextbookId</td>
+
+            <td>@t.Name</td>
+            <td>@t.Price.ToString("c2")</td>
+            <td>
+                @if (Context.User.Identity.IsAuthenticated || Context.User.IsInRole(5.ToString()))
+                {
+                    <a asp-action="AddToCart"  asp-controller="Shop" asp-route-id=@t.TextbookId  class="btn btn-primary" >Add to cart</a>
+                }
+            </td>
+            @*<td>@p.SubCategoryFkNavigation.SubCategoryName</td>
+        <td>@p.Course_Id</td>*@
+        </tr>
+        }
+    </tbody>
+</table>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Sustainable Eco-Friendly Merchandise!</h5>
+                    <p class="card-text">Support the Earth-Day Movement at the Bookstore</p>
+                    <a class="btn btn-md btn-primary" asp-area="" asp-controller="Main" asp-action="TextbookView">Check It Out!</a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">$10 off on textbooks Editions 1 Year Old</h5>
+                    <p class="card-text">Support the Earth-Day Movement at the Bookstore</p>
+                    <a class="btn btn-md btn-primary" asp-area="" asp-controller="Main" asp-action="TextbookView">Check It Out!</a>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Special ART  Kits ,$10 off on textbooks.</h5>
+                    <p class="card-text">Support the Earth-Day Movement at the Bookstore</p>
+                    <a class="btn btn-md btn-primary" asp-area="" asp-controller="Main" asp-action="TextbookView">Check It Out!</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

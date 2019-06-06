@@ -1,0 +1,42 @@
+﻿@model ANVBookstore.Models.LoginInput
+
+@{
+    ViewData["Title"] = "Customer_Login";
+}
+
+<h1>CustomerLogin</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Customer_Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserPassword" class="control-label"></label>
+                <input asp-for="UserPassword" class="form-control" />
+                <span asp-validation-for="UserPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+
+                <input type ="hidden" asp-for="ReturnURL" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login in Customer" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Register"  class="btn btn-md btn-primary">SignUp</a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

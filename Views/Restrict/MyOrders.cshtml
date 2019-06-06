@@ -1,0 +1,53 @@
+﻿
+@model IEnumerable<OrderItems>
+
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+@* check if there are orders*@
+
+@if (Model.Any())
+{
+    <h1>Orders for @Context.User.Identity.Name</h1>
+
+    <table class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Order Date
+                </th>
+               
+                <th class="text-right">
+                    Price
+                </th>
+                <th class="text-right">
+                    Quanitity
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @( item.OrderId)
+                </td>
+
+
+                <td class="text-right">
+                    @item.OrderQty
+                </td>
+                <td class="text-right">
+                    @item.OrderId
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1>No orders for @Context.User.Identity.Name</h1>
+}
+

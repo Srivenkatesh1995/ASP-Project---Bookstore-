@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Textbook>
+@{
+    ViewData["Title"] = "CourseView";
+}
+
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@foreach (var p in Model)
+{
+    <div class="card border-primary m-1 p-1">
+        <div class="bg-light p-1">
+            <h4>
+                @p.Name
+                <span style="float:right">
+
+                </span>
+            </h4>
+
+
+        </div>
+        <div class="card-text p-1">
+            @p.Author
+            <span class="badge badge-pill badge-primary" style="float:right">
+                @p.Price.ToString("c")
+
+            </span>
+
+        </div>
+
+    </div>
+}
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Sustainable Eco-Friendly Merchandise!</h5>
+                        <p class="card-text">Support the Earth-Day Movement at the Bookstore</p>
+                        <a href="#" class="btn btn-primary">Check It Out!</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">$10 off on textbooks Editions 1 Year Old</h5>
+                        <p class="card-text">Support the Earth-Day Movement at the Bookstore</p>
+                        <a href="#" class="btn btn-primary">Check It Out!</a>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Special ART  Kits ,$10 off on textbooks.</h5>
+                        <p class="card-text">Support the Earth-Day Movement at the Bookstore</p>
+                        <a href="#" class="btn btn-primary">Check It Out!</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>

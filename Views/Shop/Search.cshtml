@@ -1,0 +1,53 @@
+﻿
+
+@model IEnumerable<Textbook>
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>ANV Bookstore - Catalog</h1>
+
+<form asp-action="Search" method="post">
+    <div class="form-actions no-color">
+        <p>
+            Search by Product Name: <input maxlength="20" type="text" name="searchName" value="@ViewData["NameFilter"]" />
+            Minimum Price: <input type="number" min="0" max="1000" name="priceMin" value="@ViewData["PriceMinFilter"]" />
+            Maximum Price: <input type="number" min="0" max="1000" name="priceMax" value="@ViewData["PriceMaxFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" />
+            <a asp-action="Search">Reset Search</a>
+        </p>
+    </div>
+</form>
+@if (Model != null)
+{
+    <table class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr>
+                <th style="width:30%">
+                    Textbook
+                </th>
+                <th style="width:5%">
+                    Price
+                </th>
+                <th style="width:65%">Author</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+            <tr>
+                <td>@p.Name</td>
+                <td style="text-align:right">@p.Price.ToString("c2")</td>
+                <td>@p.Author</td>
+                <td>
+                    @if (Context.User.Identity.IsAuthenticated || Context.User.IsInRole(5.ToString()))
+                    {
+                        <a asp-action="AddToCart" asp-controller="Shop" asp-route-id=@p.TextbookId class="btn btn-primary">Add to cart</a>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+

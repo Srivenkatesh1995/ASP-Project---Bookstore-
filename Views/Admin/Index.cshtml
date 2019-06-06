@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ANVBookstore.Models.Textbook>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<p>
+    <a   asp-controller="Courses" asp-action="Index" class="btn btn-lg btn-primary">Detailed Course List</a>
+</p>
+
+<p>
+    <a asp-action="Create" class="btn btn-lg btn-primary">Adopt New Textbook</a>
+</p>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.CourseId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TextbookId" class="btn btn-lg btn-outline-warning">Edit</a> 
+                <a asp-action="Details" asp-route-id="@item.TextbookId" class="btn btn-lg btn-primary">Details</a> 
+                <a asp-action="Delete" asp-route-id="@item.TextbookId" class="btn btn-lg btn-outline-danger">Delete</a>
+              
+               
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

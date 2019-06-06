@@ -1,0 +1,37 @@
+﻿
+
+@model ANVBookstore.Models.Textbook
+
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Tara Store - Product Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Product
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TextbookId)
+        </dd>
+        
+       
+        <dt class="col-sm-2">
+            Price
+        </dt>
+        
+        
+     
+        
+        
+    </dl>
+</div>
+<div>
+    <a asp-action="AddToCart" asp-route-id="Textbook.Textbookid" class="btn btn-success btn-sm">Add to Cart</a>
+    <a asp-action="Search">Back to Search</a>
+</div>
+
